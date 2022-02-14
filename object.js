@@ -1,21 +1,33 @@
 const employers = [
   {
-    NF:1,
-    firstName: "José",
-    lastName: "Tony",
-    email: "jose.tony@gmail.com"
-  },
- {
-    NF:2,
-    firstName: "Raimundo",
-    lastName: "Tony",
-    email: "ray.tony@gmail.com"
+    FID:1,
+    name: "José Tony",
+    office: "CTO",
+    email: "jose.tony@messier.com"
   },
   {
-    NF:3,
-    firstName: "Anderson",
-    lastName: "Kennedy",
-    email: "anderson.kedriny@gmail.com"
+    FID:2,
+    name: "Batista Oliveira",
+    office: "Tech Lead",
+    email: "batista.oliveira@messier.com"
+  },
+  {
+    FID:3,
+    name: "Anderson Kennedy",
+    office: "UI/UX Designer",
+    email: "anderson.kedriny@messier.com"
+  },
+  {
+    FID:4,
+    name: "João Tony",
+    office: "Frontend developer",
+    email: "joao.tony@messier.com"
+  },
+  {
+    FID:5,
+    name: "Caio Tony",
+    office: "Backend developer",
+    email: "caio.tony@messier.com"
   }
 ]
 
