@@ -2,6 +2,7 @@ const canvas = document.getElementById("cnv")
 const cntx = canvas.getContext("2d")
 canvas.width = window.innerWidth
 canvas.height= window.innerHeight
+const posiQuociente = 10
 
 let partcleArray = []
 
@@ -19,15 +20,15 @@ window.addEventListener('mousemove', e=>{
 })
 
 cntx.fillStyle = "white"
-cntx.font = "30px verdana"
-cntx.fillText("A",0,30)
-const data = cntx.getImageData(0,0,100,100)
+cntx.font = "12px verdana"
+cntx.fillText("Raimundo",0,30)
+const textCordinate = cntx.getImageData(0,0,100,100)
 
 class Particle {
   constructor(x,y){
     this.x = x
     this.y = y
-    this.size = 1
+    this.size = 5
     this.baseX = this.x
     this.baseY = this.y
     this.densidy = (Math.random()*30 +1)
@@ -69,14 +70,20 @@ class Particle {
     } 
 }
 
+console.log(textCordinate.data)
 const create = ()=>{
   particleColection = []
   
-  for(let i =0; i<1500;i++){
-    let x = Math.random() * canvas.width
-    let y = Math.random( ) * canvas.height
-    particleColection.push(new Particle(x,y))
-  }  
+  for(let y =0, y1 =textCordinate.height;y<y1;y++){
+    for(let x=0, x1 = textCordinate.width;x<x1;x++){
+      if(textCordinate.data[(y*4*textCordinate.width)+(x*4)+3]>128){
+        let posX = x +posiQuociente
+        let posY = y
+        particleColection.push(new Particle(posX*15,posY*15))
+        console.log("funcionou")
+      }
+    }
+  }
 }
 
 create()
