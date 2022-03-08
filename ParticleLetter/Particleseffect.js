@@ -4,7 +4,7 @@ canvas.width = window.innerWidth
 canvas.height= window.innerHeight
 const posiQuociente = 10
 
-let partcleArray = []
+let particleColection = []
 
 //handle mouse
 
@@ -20,18 +20,18 @@ window.addEventListener('mousemove', e=>{
 })
 
 cntx.fillStyle = "white"
-cntx.font = "12px verdana"
-cntx.fillText("Raimundo",0,30)
+cntx.font = "20px verdana"
+cntx.fillText("R",0,30)
 const textCordinate = cntx.getImageData(0,0,100,100)
 
 class Particle {
   constructor(x,y){
     this.x = x
     this.y = y
-    this.size = 5
+    this.size = 3
     this.baseX = this.x
     this.baseY = this.y
-    this.densidy = (Math.random()*30 +1)
+    this.densidy = (Math.random()*50 +1)
   }
 
   draw(){
@@ -72,7 +72,7 @@ class Particle {
 
 console.log(textCordinate.data)
 const create = ()=>{
-  particleColection = []
+ 
   
   for(let y =0, y1 =textCordinate.height;y<y1;y++){
     for(let x=0, x1 = textCordinate.width;x<x1;x++){
@@ -88,6 +88,7 @@ const create = ()=>{
 
 create()
 
+
 console.log(particleColection)
 
 const anim = () =>{
@@ -96,8 +97,31 @@ const anim = () =>{
     particleColection[i].draw()
     particleColection[i].update()
   }
-    
+
+  //join()  
   requestAnimationFrame(anim)    
 }
 
+
 anim()
+
+function join (){
+  for(let a = 0 ; a < particleColection.length ;  a++){
+    for(let b = 0 ; b < particleColection.length ; b++){
+      let dx = particleColection[a].x - particleColection[b].x
+      let dy = particleColection[a].y - particleColection[b].y
+      let distance = Math.sqrt((dx*dx)+(dy*dy))
+      //console.log(distance)
+      if(distance<30){
+        console.log("Entrou :" + distance)
+        cntx.strokeStyle = 'white'
+        cntx.lineWidth = 2
+        cntx.beginPath()
+        cntx.moveTo(particleColection[a].x, particleColection[a].y)
+        cntx.lineTo(particleColection[b].x, particleColection[b].y)
+        cntx.stroke()
+      }
+     
+    }
+  }
+}
